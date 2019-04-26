@@ -1,0 +1,87 @@
+<script>
+    function isValidChoise(choise)
+    {
+        let choiseStr = choise.trim().toLowerCase();
+
+        if(choiseStr === "rock" || choiseStr === "paper" || choiseStr === "scissor")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function computerPlay()
+    {
+        let choiseNum = Math.floor(Math.random() * 10) % 3; // Get a random integer from 0 to 2
+
+        let compChoise;
+        switch(choiseNum)
+        {
+            case 0:
+                compChoise = "rock";
+                break;
+            case 1:
+                compChoise = "paper";
+                break;
+            case 2:
+                compChoise = "scissor";
+            //    break;
+            //default:
+            //    compChoise = "rock";
+        }
+
+        return compChoise;
+    }
+
+    function playRound(userSel, compSel)
+    {
+        let userSelStr = userSel.trim().toLowerCase();
+        //let compSelStr = compSel.trim().toLowerCase();  
+
+        if(userSelStr === compSel)
+        {
+            return ("Game Draw. " + userSel + " Vs " + compSel);
+        }
+
+        let combinationStr = userSelStr + compSel;
+        let winnerStr; 
+        
+        if(combinationStr === "rockpaper" || combinationStr === "paperrock")
+        {
+            winnerStr = "paper";
+        }
+        else if(combinationStr === "paperscissor" || combinationStr === "scissorpaper")
+        {
+            winnerStr = "scissor";
+        }
+        else
+        {
+            winnerStr = "rock";
+        }
+
+        if(userSelStr === winnerStr)
+        {
+            return ("You win : " + userSel + " beats " + compSel);
+        }
+        else
+        {
+            return ("You lose : " + compSel + " beats " + userSel);   
+        }
+    }    
+
+    do
+    {
+        userSel = prompt("Please enter your choise (either rock, paper or scissor): ");        
+    }
+    while(userSel != null && !isValidChoise(userSel))
+
+    if(userSel != null)
+    {
+        let compSel = computerPlay();
+        console.log(playRound(userSel, compSel));
+    }
+
+</script>
