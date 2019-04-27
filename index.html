@@ -70,18 +70,61 @@
         {
             return ("You lose : " + compSel + " beats " + userSel);   
         }
-    }    
+    }
+
+    let rounds = null;
+    let userSel = null;
 
     do
     {
-        userSel = prompt("Please enter your choise (either rock, paper or scissor): ");        
+        rounds = prompt("Enter number of rounds to be played : ");        
     }
-    while(userSel != null && !isValidChoise(userSel))
+    while(rounds != null && isNaN(rounds = parseInt(rounds)))
 
-    if(userSel != null)
+    let userWin = 0;
+    let compWin = 0;
+    let roundsDescending = 0;
+    while(rounds != null && rounds > 0)
     {
-        let compSel = computerPlay();
-        console.log(playRound(userSel, compSel));
+        rounds--;
+
+        do
+        {
+            userSel = prompt("Please enter your choise (either rock, paper or scissor): ");        
+        }
+        while(userSel != null && !isValidChoise(userSel))
+
+        if(userSel != null)
+        {            
+            let compSel = computerPlay();
+            let winnerStr = playRound(userSel, compSel);
+            console.log("Round " + ++roundsDescending + " : " + winnerStr);
+            if(winnerStr.search("win") != -1)
+            {
+                userWin++;
+            }
+            else if(winnerStr.search("lose") != -1)
+            {
+                compWin++;
+            }            
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    if(userWin > compWin)
+    {
+        console.log("You win the game!");
+    }
+    else if(compWin > userWin)
+    {
+        console.log("You lose the game!");
+    }
+    else
+    {
+        console.log("DRAW!");
     }
 
 </script>
