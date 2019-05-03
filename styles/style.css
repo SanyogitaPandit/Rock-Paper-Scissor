@@ -1,0 +1,71 @@
+html,
+body {
+    background: #efe;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%
+    /* needed for container min-height */
+}
+
+hr { 
+    display: block;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+  }
+
+table {
+    width: 100%;    
+}
+
+.textStyle {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.imagestyle {    
+    width: 100px;
+    height: 100px;
+    margin: 2px;
+    padding: 2px;
+}
+
+.content {
+    position: relative;
+    width: 40%;    
+    float: left;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+div#container {
+    position: relative;
+    /* needed for footer positioning*/
+    height: auto !important;
+    /* real browsers */
+    min-height: 100%;
+    /* real browsers */
+    width: auto !important;
+    min-width: 100%;
+}
+
+div#header {
+    padding: 1em;    
+}
+
+div#footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    /* stick to bottom */
+    background: #ddd;
+}

@@ -1,130 +1,65 @@
-<script>
-    function isValidChoise(choise)
-    {
-        let choiseStr = choise.trim().toLowerCase();
+<!DOCTYPE html>
+<html lang="en">
 
-        if(choiseStr === "rock" || choiseStr === "paper" || choiseStr === "scissor")
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+<head>
+    <title>Rock-Paper-Scissor</title>
+    <meta charset="utf-8">
+</head>
 
-    function computerPlay()
-    {
-        let choiseNum = Math.floor(Math.random() * 10) % 3; // Get a random integer from 0 to 2
+<body onload="onPageLoad()">
+    <div id="container" class="clearfix">
+        <div id="header" class="textStyle">
+            <h1 class="textStyle" style="color:olive">Rock-Paper-Scissor</h1>
+            <h3 class="textStyle">You Vs Computer</h3>
+        </div>
+        <hr>
+        <div id="content" class="textStyle">
+            <div id="userInputDiv" class=" content">
+                <p>Click on your choise from below:</p>
+                <button id="bRock" name="rock" type="button">
+                    <img class="imagestyle" src="images\rock.png" alt="rock image">
+                </button>
+                <button id="bPaper" name="paper" type="button">
+                    <img class="imagestyle" src="images\paper.png" alt="paper image">
+                </button>
+                <button id="bScissor" name="scissor" type="button">
+                    <img class="imagestyle" src="images\scissor.png" alt="scissor image">
+                </button>
+            </div>
+            <div class="content" style="width: 10%;">
+                <img src="images\rightAarrow.png" alt="Right Arrow image" style="margin-top: 75px" width="50px"
+                    height="50px">
+            </div>
+            <div class=" content">
+                <table>
+                    <tr>
+                        <td>Last Round Result<p id="lrw"></p>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td style="text-align: right; width: 25%">Your<br>choise</td>
+                        <td id="usrChPlace" style="width: 25%"></td>
+                        <td id="compChPlace" style="width: 25%"></td>
+                        <td style="text-align: left; width: 25%">Computer's<br>choise</td>
+                    </tr>
+                </table>
+            </div>
+            <div class=" content textStyle" style="width:100%; margin-top: 30px">
+                <hr>
+                <h2 id="tr" style="margin-top: 10px">Total Rounds: 0</h2>
+                <h1 id="winner" style="color:crimson; margin-top:0; margin-bottom: 50px"></h1>
+            </div>
+        </div>
+        <div id="footer" class="textStyle">
+            <hr>
+            <h5 class="textStyle" style="margin-bottom: 10px; color:darkslategray">Enjoy The Game! --Sanyogita Pandit
+            </h5>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="scripts\script.js"></script>
+<link href="styles\style.css" rel="stylesheet" type="text/css">
 
-        let compChoise;
-        switch(choiseNum)
-        {
-            case 0:
-                compChoise = "rock";
-                break;
-            case 1:
-                compChoise = "paper";
-                break;
-            case 2:
-                compChoise = "scissor";
-            //    break;
-            //default:
-            //    compChoise = "rock";
-        }
-
-        return compChoise;
-    }
-
-    function playRound(userSel, compSel)
-    {
-        let userSelStr = userSel.trim().toLowerCase();
-        //let compSelStr = compSel.trim().toLowerCase();  
-
-        if(userSelStr === compSel)
-        {
-            return ("Game Draw. " + userSel + " Vs " + compSel);
-        }
-
-        let combinationStr = userSelStr + compSel;
-        let winnerStr; 
-        
-        if(combinationStr === "rockpaper" || combinationStr === "paperrock")
-        {
-            winnerStr = "paper";
-        }
-        else if(combinationStr === "paperscissor" || combinationStr === "scissorpaper")
-        {
-            winnerStr = "scissor";
-        }
-        else
-        {
-            winnerStr = "rock";
-        }
-
-        if(userSelStr === winnerStr)
-        {
-            return ("You win : " + userSel + " beats " + compSel);
-        }
-        else
-        {
-            return ("You lose : " + compSel + " beats " + userSel);   
-        }
-    }
-
-    let rounds = null;
-    let userSel = null;
-
-    do
-    {
-        rounds = prompt("Enter number of rounds to be played : ");        
-    }
-    while(rounds != null && isNaN(rounds = parseInt(rounds)))
-
-    let userWin = 0;
-    let compWin = 0;
-    let roundsDescending = 0;
-    while(rounds != null && rounds > 0)
-    {
-        rounds--;
-
-        do
-        {
-            userSel = prompt("Please enter your choise (either rock, paper or scissor): ");        
-        }
-        while(userSel != null && !isValidChoise(userSel))
-
-        if(userSel != null)
-        {            
-            let compSel = computerPlay();
-            let winnerStr = playRound(userSel, compSel);
-            console.log("Round " + ++roundsDescending + " : " + winnerStr);
-            if(winnerStr.search("win") != -1)
-            {
-                userWin++;
-            }
-            else if(winnerStr.search("lose") != -1)
-            {
-                compWin++;
-            }            
-        }
-        else
-        {
-            break;
-        }
-    }
-
-    if(userWin > compWin)
-    {
-        console.log("You win the game!");
-    }
-    else if(compWin > userWin)
-    {
-        console.log("You lose the game!");
-    }
-    else
-    {
-        console.log("DRAW!");
-    }
-
-</script>
+</html>
